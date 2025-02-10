@@ -18,3 +18,4 @@ class ReservationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reservation
         fields = "__all__"  # spesicially array can be defined
+        read_only_fields = ("reservation_code",)
