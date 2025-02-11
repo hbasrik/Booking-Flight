@@ -55,7 +55,7 @@ class Reservation(models.Model):
 
     def save(self, *args, **kwargs):
 
-        if self.flight.reservations.count > self.flight.airplane.capacity:
+        if self.flight.reservations.count() > self.flight.airplane.capacity:
             raise ValidationError("This flight is fully booked.")
 
         if not self.reservation_code:
