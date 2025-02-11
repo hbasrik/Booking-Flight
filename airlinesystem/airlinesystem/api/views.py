@@ -11,10 +11,6 @@ class AirplaneView(viewsets.ModelViewSet):
     queryset = Airplane.objects.all()
     serializer_class = AirplaneSerializer
 
-    def list(self, request):
-        serializer = self.serializer_class(self.queryset, many=True)
-        return Response(serializer.data)
-
     @action(detail=True, methods=["GET"])
     def flights(self, request, pk=None):
 
@@ -34,10 +30,6 @@ class FlightView(viewsets.ModelViewSet):
     queryset = Flight.objects.all()
     serializer_class = FlightSerializer
 
-    def list(self, request):
-        serializer = self.serializer_class(self.queryset, many=True)
-        return Response(serializer.data)
-
     @action(detail=True, methods=["GET"])
     def reservation(self, request, pk=None):
         try:
@@ -55,10 +47,6 @@ class FlightView(viewsets.ModelViewSet):
 class ReservationView(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
-
-    def list(self, response):
-        serializer = self.serializer_class(self.queryset, many=True)
-        return Response(serializer.data)
 
     def create(self, request, *args, **kwargs):
 
@@ -88,15 +76,6 @@ class ReservationView(viewsets.ModelViewSet):
         )
         serializer = self.get_serializer(available_reservations, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
-    @action(detail=True, methods=["PATCH"])
-    def cancel_reservation(self, request, pk=None):  # destroy?
-        reservation = self.get_object()
-        reservation.status = False
-        reservation.save()
-        return Response(
-            {"message": "Reservation has been canceled."}, status=status.HTTP_200_OK
-        )
 
     def destroy(self, request, *args, **kwargs):
         reservation = self.get_object()
