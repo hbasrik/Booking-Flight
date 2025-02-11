@@ -32,6 +32,13 @@ class Flight(models.Model):
         related_name="flights",
     )
 
+    def save(self, *args, **kwargs):
+        if not self.airplane.status:
+            raise ValidationError(
+                f"Cannot create flight. The airplane '{self.airplane.tail_number}' is not available."
+            )
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return f" Flight {self.flight_number} ({self.departure} to {self.destination})"
 

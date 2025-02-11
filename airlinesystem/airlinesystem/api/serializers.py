@@ -13,6 +13,14 @@ class FlightSerializer(serializers.ModelSerializer):
         model = Flight
         fields = "__all__"
 
+    def validate(self, data):
+        airplane = data.get("airplane")
+        if airplane and not airplane.status:
+            raise serializers.ValidationError(
+                f"Cannot create flight. The airplane '{airplane.tail_number}' is not available."
+            )
+        return data
+
 
 class ReservationSerializer(serializers.ModelSerializer):
     class Meta:
