@@ -1,6 +1,7 @@
 from django.db import models
 import random
 import string
+from django.core.exceptions import ValidationError
 
 # Create your models here.
 
@@ -53,6 +54,9 @@ class Reservation(models.Model):
         return f"Reservation {self.reservation_code} for {self.passenger_name}"
 
     def save(self, *args, **kwargs):
+
+        if self.flight.reservations.count > self.flight.airplane.capacity:
+            raise ValidationError("This flight is fully booked.")
 
         if not self.reservation_code:
             self.reservation_code = self.generate_reservation_code()
