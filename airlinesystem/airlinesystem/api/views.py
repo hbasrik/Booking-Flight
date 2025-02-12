@@ -5,6 +5,9 @@ from .serializers import AirplaneSerializer, FlightSerializer, ReservationSerial
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework import status
+from rest_framework import viewsets, filters
+from django_filters.rest_framework import DjangoFilterBackend
+from .filters import FlightFilter
 
 
 class AirplaneView(viewsets.ModelViewSet):
@@ -29,6 +32,15 @@ class AirplaneView(viewsets.ModelViewSet):
 class FlightView(viewsets.ModelViewSet):
     queryset = Flight.objects.all()
     serializer_class = FlightSerializer
+
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.OrderingFilter,
+        filters.SearchFilter,
+    ]
+    filterset_class = FlightFilter
+    ordering_fields = ["departure_time", "arrival_time"]
+    search_fields = ["departure", "destination"]
 
     @action(detail=True, methods=["GET"])
     def reservation(self, request, pk=None):
