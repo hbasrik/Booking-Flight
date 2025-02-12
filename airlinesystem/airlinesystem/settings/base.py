@@ -28,7 +28,6 @@ INSTALLED_APPS = [
     "rest_framework",
     "airlinesystem.api",
     "django_filters",
-    "api",
 ]
 
 MIDDLEWARE = [
