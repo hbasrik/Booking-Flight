@@ -1,7 +1,5 @@
 from .base import *
 
-
-ALLOWED_HOSTS = ["*"]
 # CSRF_TRUSTED_ORIGINS = ["http://*.on-acorn.io", "https://*.on-acorn.io"]
 
 
@@ -16,4 +14,10 @@ ALLOWED_HOSTS = ["*"]
 #     }
 # }
 
-DATABASES = {}
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
