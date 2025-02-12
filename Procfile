@@ -1,1 +1,1 @@
-web: gunicorn airlinesystem.airlinesystem.wsgi:application
+web: cd airlinesystem && gunicorn airlinesystem.wsgi:application
