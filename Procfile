@@ -1,1 +1,1 @@
-web: gunicorn airlinesystem.wsgi:application
+web: gunicorn airlinesystem.airlinesystem.wsgi:application
