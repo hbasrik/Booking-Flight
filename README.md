@@ -69,6 +69,51 @@ python -c 'from django.core.management.utils import get_random_secret_key; print
 
 ```
 
+### 7. You can check the endpoints based on these urls;
+
+
+## **Airplanes**
+
+**GET** /api/airplanes/: List all airplanes.
+
+**GET** /api/airplanes/tail_number/: Get spesific airplane.
+
+**GET** /api/airplanes/tail_number/flights: Get the flights of a specific airplane.
+
+**POST** /api/airplanes/: Create a new airplane.
+
+**PATCH** /api/airplanes/tail_number/: Update a specific airplane.
+
+**DELETE** /api/airplanes/tail_number/: Delete a specific airplane.
+
+
+## **Flights**
+
+**GET** /api/flights/: List all flights.
+
+**GET** /api/flights/{id}/: Get spesific flight.
+
+**GET** /api/flights/{id}/reservations: Get reservations made for a specific flight.
+
+**POST** /api/flights/: Create a new flight.
+
+**PATCH** /api/flights/{id}/: Update a specific flight.
+
+**DELETE** /api/flights/{id}/: Delete a specific flight.
+
+
+
+## **Reservations**
+
+**GET** /api/reservations/: List all reservations.
+
+**GET** /api/reservations/{id}/: Get details of a specific reservation.
+
+**POST** /api/reservations/: Create a new reservation.
+
+**PATCH** /api/reservations/{id}/: Update a specific reservation.
+
+
 
 
 
