@@ -14,7 +14,7 @@ This is a Django-based API for managing airlines, flights, and reservations. It 
 
 ### 1. Clone the Repository
   ```bash
-  git clone https://github.com/your-username/airline-management-system.git
+  git clone https://github.com/your-username/booking-flight.git
   cd airlinesystem
 
 
